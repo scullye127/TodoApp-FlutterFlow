@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User Document Schema",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User's email address"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "User's chosen display name"
+    },
+    "photo_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the user's profile photo"
+    },
+    "uid": {
+      "type": "string",
+      "description": "Unique identifier for the user"
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp of account creation"
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "User's phone number, ideally in E.164 format"
+    },
+    "birthday": {
+      "type": "string",
+      "format": "date",
+      "description": "User's birthday (date only, no time)"
+    }
+  },
+  "required": [
+    "email",
+    "display_name",
+    "uid",
+    "created_time"
+  ],
+  "additionalProperties": false
+}
