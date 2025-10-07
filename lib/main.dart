@@ -1,3 +1,4 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,13 @@ void main() async {
 
   await FlutterFlowTheme.initialize();
 
-  runApp(MyApp());
+  final appState = FFAppState(); // Initialize FFAppState
+  await appState.initializePersistedState();
+
+  runApp(ChangeNotifierProvider(
+    create: (context) => appState,
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -149,6 +156,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'tasks': TasksWidget(),
+      'login': LoginWidget(),
       'completed': CompletedWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -173,6 +181,14 @@ class _NavBarPageState extends State<NavBarPage> {
             icon: Icon(
               Icons.format_list_bulleted,
               size: 30.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24.0,
             ),
             label: 'Home',
             tooltip: '',
