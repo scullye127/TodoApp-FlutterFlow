@@ -89,7 +89,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: LoginWidget.routeName,
           path: LoginWidget.routePath,
-          builder: (context, params) => LoginWidget(),
+          builder: (context, params) =>
+              params.isEmpty ? NavBarPage(initialPage: 'login') : LoginWidget(),
         ),
         FFRoute(
           name: TasksWidget.routeName,
